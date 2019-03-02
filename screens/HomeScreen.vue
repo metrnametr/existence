@@ -1,17 +1,25 @@
 <template>
   <view class="container">
     <text>{{ text }}</text>
+    <switch
+            :on-value-change = "handleChange"
+            :value = "value"/>
     <button
       :on-press="goMessages"
-      title="Go Messages"
+      title="Проверка связи"
     />
+    <text 
+      v-if="isOpen">
+    Good morning</text>
   </view>
 </template>
 <script>
   export default {
     data: function() {
       return {
-        text: 'Home'
+        text: 'Home',
+        value: false,
+        isOpen: false
       }
     },
     props: {
@@ -22,6 +30,10 @@
     methods: {
       goMessages: function() {
         this.navigation.navigate("Messages")
+      },
+      handleChange: function(val) {
+        this.value = val;
+        this.isOpen = val;
       }
     }
   }

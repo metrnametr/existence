@@ -7,8 +7,11 @@
     <button
       :on-press="saveMessage"
       title="Save"
+      color="#000000"
     />
-    <text v-for="(message, index) in messages" :key="index">{{ message }}</text>
+    <text
+    class="text-color-primary"
+     v-for="(message, index) in messages" :key="index">{{ message }}</text>
   </view>
 </template>
 <script>
@@ -26,20 +29,28 @@
     },
     methods: {
       saveMessage: function() {
-        Store.dispatch('addMessage', this.messageText)
+        if (this.messageText === '')
+          alert('your message false');
+        else 
+          Store.dispatch('addMessage', this.messageText)
         this.messageText = ''
       }
     }
   }
 </script>
 <style>
+
 .container {
   background-color: white;
   align-items: center;
   justify-content: center;
   flex: 1;
+ 
 }
 .text-color-primary {
-  color: blue;
+   color:red;
+
 }
+
+
 </style>
